@@ -11,7 +11,6 @@ import {
 import { uploadHeadshot, createJob, subscribeToJob } from './api';
 
 function App() {
-  // Authentication states
   const [user, setUser] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
   const [authMode, setAuthMode] = useState('signin'); // 'signin' or 'signup'
@@ -21,7 +20,7 @@ function App() {
   const [authError, setAuthError] = useState('');
   const [authLoading, setAuthLoading] = useState(false);
 
-  // Uploader & Generator states
+ 
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [headshotUrl, setHeadshotUrl] = useState('');
@@ -32,15 +31,14 @@ function App() {
   const [errorMsg, setErrorMsg] = useState('');
   const [dragging, setDragging] = useState(false);
 
-  // Job tracking states
+
   const [jobId, setJobId] = useState('');
   const [jobStatus, setJobStatus] = useState('');
   const [thumbnails, setThumbnails] = useState([]);
-  
-  // Ref for event source
+
   const eventSourceRef = useRef(null);
 
-  // Listen for Auth changes
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -49,7 +47,7 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  // Cleanup EventSource on unmount
+
   useEffect(() => {
     return () => {
       if (eventSourceRef.current) {
@@ -58,7 +56,7 @@ function App() {
     };
   }, []);
 
-  // Handle Authentication
+
   const handleAuth = async (e) => {
     e.preventDefault();
     setAuthError('');
@@ -104,7 +102,7 @@ function App() {
         eventSourceRef.current.close();
       }
       await signOut(auth);
-      // Reset dashboard state
+   
       setFile(null);
       setPreviewUrl(null);
       setHeadshotUrl('');

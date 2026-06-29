@@ -43,7 +43,7 @@ export async function createJob({ prompt, numThumbnails, headshotUrl }, token) {
 }
 
 export async function subscribeToJob(jobId, token, { onThumbnailReady, onThumbnailFailed, onJobComplete, onError }) {
-    // Pass the Firebase token as a query parameter for EventSource since headers aren't supported natively
+    
     const url = `${API_BASE}/jobs/${jobId}/stream?token=${encodeURIComponent(token)}`;
     const es = new EventSource(url);
     

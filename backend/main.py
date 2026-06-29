@@ -12,7 +12,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Initialize Firebase Admin SDK for verifying ID tokens
+
 if not firebase_admin._apps:
     firebase_admin.initialize_app(options={'projectId': 'ai-uploader-2430d'})
 

@@ -62,11 +62,11 @@ async def upload_headshot(
     current_user: dict = Depends(get_current_user)
 ):
     contents = await file.read()
-    # #region agent log
+  
     import json as _json, time as _time
     with open(r"C:\Users\atreya sharma\OneDrive\Desktop\thumbnail_uploader\debug-f99e6c.log", "a") as _f:
         _f.write(_json.dumps({"sessionId":"f99e6c","hypothesisId":"B","location":"routes.py:upload","message":"upload request received","data":{"filename":file.filename,"size":len(contents)},"timestamp":int(_time.time()*1000)})+"\n")
-    # #endregion
+
     try:
         url = upload_file(
             file_bytes=contents,

@@ -14,16 +14,16 @@ async def generate_thumbnail(prompt: str, style_prompt: str, headshot_url: str) 
 
     try:
         response = await async_openai_client.images.generate(
-            model="dall-e-2",
+            model="gpt-image-2",
             prompt=full_prompt,
             n=1,
             size="1024x1024",
         )
         image_url = response.data[0].url
     except Exception as e:
-        # If OpenAI key has no credits/access, fallback to a free AI image generator for dev purposes
+   
         if "does not exist" in str(e) or "insufficient_quota" in str(e) or "400" in str(e):
-            # Using picsum.photos as a guaranteed reliable placeholder mock 
+     
             image_url = "https://picsum.photos/1024/1024"
         else:
             raise e

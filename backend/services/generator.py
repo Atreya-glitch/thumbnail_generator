@@ -41,17 +41,17 @@ async def generate_single_thumbnail(thumbnail_id: str, prompt: str, headshot_url
     style_prompt = STYLE.get(style_name, "")
     
     try:
-        # Generate the thumbnail bytes using OpenAI DALL-E 3
+    
         image_bytes = await generate_thumbnail(prompt, style_prompt, headshot_url)
         
-        # Upload the generated thumbnail to ImageKit
+     
         imagekit_url = upload_file(
             file_bytes=image_bytes,
             file_name=f"{thumbnail_id}.png",
             folder=f"thumbnails/{job_id}"
         )
         
-        # Update the thumbnail state to uploaded
+  
         with Session(engine) as session:
             thumbnail_obj = session.get(Thumbnail, thumbnail_id)
             if thumbnail_obj:
@@ -88,7 +88,6 @@ async def process_job(job_id: str):
         thumbnails = session.exec(select(Thumbnail).where(Thumbnail.job_id == job_id)).all()
         thumbnails_id = [t.id for t in thumbnails]
 
-    # Run generations in parallel
     tasks = [
         generate_single_thumbnail(tid, prompt, headshot_url) for tid in thumbnails_id
     ]
