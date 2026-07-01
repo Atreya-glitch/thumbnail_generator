@@ -63,8 +63,9 @@ async def upload_headshot(
 ):
     contents = await file.read()
   
-    import json as _json, time as _time
-    with open(r"C:\Users\atreya sharma\OneDrive\Desktop\thumbnail_uploader\debug-f99e6c.log", "a") as _f:
+    import json as _json, time as _time, os as _os
+    _log_path = _os.path.abspath(_os.path.join(_os.path.dirname(__file__), "..", "debug-f99e6c.log"))
+    with open(_log_path, "a") as _f:
         _f.write(_json.dumps({"sessionId":"f99e6c","hypothesisId":"B","location":"routes.py:upload","message":"upload request received","data":{"filename":file.filename,"size":len(contents)},"timestamp":int(_time.time()*1000)})+"\n")
 
     try:
