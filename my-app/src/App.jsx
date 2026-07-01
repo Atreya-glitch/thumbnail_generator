@@ -299,7 +299,7 @@ function App() {
   // Loader during auth initialization
   if (loadingUser) {
     return (
-      <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center', backgroundColor: '#0a0b0e', color: '#fff' }}>
+      <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f8fafc', color: '#0f172a' }}>
         <div className="card-spinner" style={{ width: '40px', height: '40px', borderWidth: '4px' }}></div>
       </div>
     );
